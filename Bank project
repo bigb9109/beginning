@@ -1,0 +1,82 @@
+#include <iostream>
+#include "Bankproject.h"
+#include"Bankproject.cpp"
+#include<iomanip>
+
+using namespace std;
+int main()
+{
+    double InitInve(1);
+    double MontDepo(1);
+    double AnnuIntr(1);
+    double NumbYrs = (1);
+    double Mnths = (NumbYrs * 12);
+    int Months = NumbYrs * 12;
+    double TotalAmnt;
+    double IntAmt;
+    double YearTotaInti;
+    
+        
+        TotalAmnt = InitInve;
+
+
+    cout << "**********************************************************" << endl;
+    cout << "*****************" << "Data Input" <<"********************" << endl;
+    cout << "Initial Investment Amount: " << endl;
+    cout << "Monthly Deposit: " << "    " << endl;
+    cout << "Annual Interest: " << "    " << endl;
+    cout << "Number of years: " << "    " << endl;
+    
+//Returns press any button to continue
+    system("PAUSE");
+
+    cout << "**********************************************************" << endl;
+    cout << "*****************" << "Data Input" << "********************" << endl;
+    cout << "Initial Investment Amount: ";
+    cin >> InitInve;
+    cout << "Monthly Deposit: " << "    ";
+    cin >> MontDepo;
+    cout << "Annual Interest: " << "    ";
+    cin >> AnnuIntr;   
+    cout << "Number of years: " << "    ";
+    cin >> NumbYrs;
+    cout << endl;
+    
+//Returns press any button to continue
+    system("PAUSE");
+
+    cout << "Balance & Interest Without Additional Deposits" << endl;
+    cout << "=============================================================================" << endl;
+    cout << "Year" << "   " << " Year End Balance" << "  " << " Year End Earned Interest" << endl;
+    cout << "------------------------------------------------------------------------------" << endl;
+
+    for (int i = 0; i < NumbYrs; i++) {
+ // used to find the interest for the year
+        IntAmt = (TotalAmnt) * ((AnnuIntr / 100));
+ //used to find the year end total
+        TotalAmnt = TotalAmnt + IntAmt;
+ // Display results on table
+        cout << (i + 1) << "                 " << fixed << setprecision(2) << TotalAmnt << "                       " << IntAmt << endl;
+    }
+    cout << endl;
+    cout << "Balance and Interest with Additional Monthly Deposit" << endl;
+    cout << "========================================================================================" << endl;
+    cout << " Year" << "      " << "Year End Balance" << "       " << " Year End Earned Interest" << endl;
+    cout << "----------------------------------------------------------------------------------------" << endl;
+    
+    for (int i = 0; i < NumbYrs; i++) {
+ //yearly interest to zero at the beginning of the year
+        YearTotaInti = 0;
+        
+        for (int m = 0; m < 12; m++) {
+//Monthly interest calculation
+            IntAmt = (TotalAmnt + MontDepo) * ((AnnuIntr / 100) / 12);
+//End of the month interest
+            YearTotaInti = YearTotaInti + IntAmt;
+//End of month total
+            TotalAmnt = TotalAmnt + MontDepo + IntAmt;
+        }
+        cout << (i + 1) << "          " << fixed << setprecision(2) << TotalAmnt << "                    " << YearTotaInti << endl;
+    }
+    return 0;
+}
